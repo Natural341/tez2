@@ -120,7 +120,7 @@ export default function NewAnalysisPage() {
                 required
               >
                 <option value="">Veri seti seçin...</option>
-                {datasets.map((dataset) => (
+                {datasets.map((dataset: any) => (
                   <option key={dataset.id} value={dataset.id}>
                     {dataset.name} ({dataset.rowCount} satır)
                   </option>
