@@ -1,14 +1,12 @@
 "use client"
 
-import { User } from "next-auth"
 import { Bell, Search, User as UserIcon, LogOut, Settings } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { useState } from "react"
 
 interface HeaderProps {
-  user?: User
+  user?: any
 }
 
 export function Header({ user }: HeaderProps) {

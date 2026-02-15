@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,23 +18,12 @@ export function LoginForm() {
     setError("")
     setLoading(true)
 
-    try {
-      const result = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      })
-
-      if (result?.error) {
-        setError("Invalid email or password")
-      } else {
+    // Demo Modu: Her türlü girişi kabul et
+    if (password.length >= 6) {
         router.push("/dashboard")
-        router.refresh()
-      }
-    } catch (error) {
-      setError("An error occurred")
-    } finally {
-      setLoading(false)
+    } else {
+        setError("Şifre en az 6 karakter olmalıdır")
+        setLoading(false)
     }
   }
 

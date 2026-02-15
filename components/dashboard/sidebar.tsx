@@ -15,7 +15,6 @@ import {
   MessageSquareText,
   LineChart,
 } from "lucide-react"
-import { signOut } from "next-auth/react"
 
 const menuItems = [
   {
@@ -107,7 +106,7 @@ export function Sidebar() {
 
       <div className="border-t border-zinc-200 p-3">
         <button
-          onClick={() => signOut({ callbackUrl: "/login" })}
+          onClick={() => window.location.href = "/"}
           className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-600 transition-all hover:bg-red-50"
         >
           <LogOut className="h-5 w-5" />
