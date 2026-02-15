@@ -1,5 +1,4 @@
 export async function getCurrentUser() {
-  // Demo Modu: Her zaman bir kullanıcı dönüyoruz
   return {
     id: "demo-user-id",
     name: "Demo Kullanıcı",
@@ -9,6 +8,5 @@ export async function getCurrentUser() {
 }
 
 export async function requireAuth() {
-  // Demo Modu: Her zaman yetki veriyoruz
   return getCurrentUser()
 }
