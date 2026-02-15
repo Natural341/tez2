@@ -16,10 +16,19 @@ export default async function DashboardLayout({
     redirect("/login")
   }
 
-  const userData = await prisma.user.findUnique({
-    where: { id: user.id },
-    select: { trialEndsAt: true, isPremium: true }
-  })
+  let userData = null
+  try {
+    userData = await prisma.user.findUnique({
+      where: { id: user.id },
+      select: { trialEndsAt: true, isPremium: true }
+    })
+  } catch (error) {
+    console.error("Dashboard layout DB error:", error)
+    // Fallback for demo mode
+    const trialEndsAt = new Date()
+    trialEndsAt.setDate(trialEndsAt.getDate() + 14)
+    userData = { trialEndsAt, isPremium: false }
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-white">

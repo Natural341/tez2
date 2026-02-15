@@ -21,17 +21,25 @@ export default async function AnalysisDetailPage({
     redirect("/login")
   }
 
-  const analysis = await prisma.analysis.findUnique({
-    where: {
-      id: id,
-      userId: user.id,
-    },
-    include: {
-      dataset: true,
-    }
-  })
+  let analysis = null
+  try {
+    analysis = await prisma.analysis.findUnique({
+      where: {
+        id: id,
+        userId: user.id,
+      },
+      include: {
+        dataset: true,
+      }
+    })
+  } catch (error) {
+    console.error("Analysis detail DB error:", error)
+  }
 
   if (!analysis) {
+    // If we're in demo mode and DB fails, we could potentially show mock data 
+    // or just notFound(). Let's stick with notFound() for now if analysis is truly null
+    // but the try-catch prevents a 500 server error.
     notFound()
   }
 
