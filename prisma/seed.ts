@@ -276,9 +276,6 @@ Genel memnuniyet skoru 4.44/5.0 ile oldukça yüksek seviyede. En yüksek memnun
       datasetId: dataset1.id,
       userId: user.id,
       status: 'pending',
-      results: null,
-      visualizations: null,
-      insights: null,
     },
   })
 
@@ -292,9 +289,6 @@ Genel memnuniyet skoru 4.44/5.0 ile oldukça yüksek seviyede. En yüksek memnun
       datasetId: dataset1.id,
       userId: user.id,
       status: 'processing',
-      results: null,
-      visualizations: null,
-      insights: null,
     },
   })
 
