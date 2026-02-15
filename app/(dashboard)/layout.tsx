@@ -8,43 +8,33 @@ import { TrialBanner } from "@/components/dashboard/trial-banner"
 export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const user = await getCurrentUser()
+  const user = {
+    id: "demo-user-id",
+    name: "Demo Kullanıcı",
+    email: "demo@example.com",
+    image: null,
+  };
 
-  if (!user?.id) {
-    redirect("/login")
-  }
-
-  let userData = null
-  try {
-    userData = await prisma.user.findUnique({
-      where: { id: user.id },
-      select: { trialEndsAt: true, isPremium: true }
-    })
-  } catch (error) {
-    console.error("Dashboard layout DB error:", error)
-    // Fallback for demo mode
-    const trialEndsAt = new Date()
-    trialEndsAt.setDate(trialEndsAt.getDate() + 14)
-    userData = { trialEndsAt, isPremium: false }
-  }
+  const userData = {
+    trialEndsAt: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+    isPremium: false,
+  };
 
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <Sidebar />
       <div className="flex flex-1 flex-col overflow-hidden">
         <TrialBanner
-          trialEndsAt={userData?.trialEndsAt}
-          isPremium={userData?.isPremium || false}
+          trialEndsAt={userData.trialEndsAt}
+          isPremium={userData.isPremium}
         />
         <Header user={user} />
         <main className="flex-1 overflow-auto bg-white">
-          <div className="container mx-auto p-6">
-            {children}
-          </div>
+          <div className="container mx-auto p-6">{children}</div>
         </main>
       </div>
     </div>
-  )
+  );
 }

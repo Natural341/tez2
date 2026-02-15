@@ -1,13 +1,9 @@
 import { redirect } from "next/navigation"
-import { getCurrentUser } from "@/lib/session"
-import { LandingPage } from "@/components/landing/landing-page"
 
 export default async function Home() {
-  const user = await getCurrentUser()
-
-  if (user) {
-    redirect("/dashboard")
-  }
-
-  return <LandingPage />
+  // Demo Modu: Ana sayfaya gelen herkesi direkt dashboard'a at
+  redirect("/dashboard")
+  
+  // Kod buraya asla ulaşmaz
+  return null
 }
