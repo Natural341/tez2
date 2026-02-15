@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export default function NewAnalysisPage() {
+function NewAnalysisForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const datasetId = searchParams.get('datasetId')
@@ -173,5 +173,13 @@ export default function NewAnalysisPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function NewAnalysisPage() {
+  return (
+    <Suspense fallback={<div>Yükleniyor...</div>}>
+      <NewAnalysisForm />
+    </Suspense>
   )
 }
