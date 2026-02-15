@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InsightFlow 🚀
 
-## Getting Started
+AI destekli veri analizi ve iş zekası platformu. CSV ve Excel dosyalarınızı yükleyin, güçlü analizler yapın ve yapay zeka ile otomatik içgörüler elde edin.
 
-First, run the development server:
+## ✨ Özellikler
+
+- 📊 **Kolay Veri Yükleme**: CSV ve Excel dosyalarını sürükle-bırak ile yükleyin
+- 🤖 **AI Destekli İçgörüler**: Google Gemini AI ile otomatik veri analizi
+- 📈 **Görselleştirme**: İnteraktif grafikler ve tablolar
+- 🔐 **Güvenli**: NextAuth.js ile modern kimlik doğrulama
+- 🎨 **Modern UI**: Minimalist ve responsive tasarım
+- 🚀 **Hızlı**: Next.js 16 + Turbopack ile optimize edilmiş
+
+## 🛠️ Teknoloji Stack
+
+- **Framework**: Next.js 16 + React 19
+- **Database**: SQLite + Prisma ORM
+- **Auth**: NextAuth.js
+- **AI**: Google Gemini API
+- **Styling**: Tailwind CSS 4
+- **Charts**: Recharts + ECharts
+- **File Processing**: Papa Parse (CSV) + xlsx (Excel)
+
+## 🚀 Hızlı Başlangıç
+
+### 1. Gereksinimler
+
+- Node.js 20+
+- npm
+
+### 2. Kurulum
+
+```bash
+# Bağımlılıkları yükle
+npm install
+
+# Veritabanını oluştur
+npx prisma migrate dev
+
+# Test verilerini yükle
+npm run seed
+```
+
+### 3. Geliştirme Sunucusunu Başlat
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açın.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Test Hesabı
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Landing page'den kayıt olabilir veya mevcut test hesabını kullanabilirsiniz:
 
-## Learn More
+```
+Email: test@example.com
+Şifre: test123
+```
 
-To learn more about Next.js, take a look at the following resources:
+Test hesabında:
+- 2 örnek veri seti (Satış Verileri & Müşteri Profilleri)
+- 2 tamamlanmış analiz
+- AI içgörüleri
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Özellikler Detayları
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Veri Yükleme
+- CSV ve Excel (.xlsx, .xls) desteği
+- Vercel Blob ile bulut tabanlı depolama
+- Otomatik veri önizleme
+- Sütun tipi tespiti
 
-## Deploy on Vercel
+### Veri Analizi
+- Tanımlayıcı istatistikler (ortalama, medyan, std. sapma)
+- Korelasyon analizi
+- Regresyon analizi
+- Zaman serisi analizi
+- Kümeleme analizi
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### AI İçgörüleri
+- Google Gemini API entegrasyonu
+- Otomatik içgörü üretimi
+- Türkçe analiz raporları
+- İş önerileri
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 14 Günlük Deneme
+- Otomatik trial sistemi
+- Premium özelliklere erişim
+- Kredi kartı gerekmez
+
+## 🔑 Ortam Değişkenleri
+
+`.env` dosyası oluşturun:
+
+```env
+DATABASE_URL=file:./dev.db
+NEXTAUTH_SECRET=your-secret-key
+NEXTAUTH_URL=http://localhost:3000
+GEMINI_API_KEY=your-gemini-api-key
+```
+
+## 📦 Build
+
+```bash
+# Production build
+npm run build
+
+# Production sunucusu
+npm start
+```
+
+---
+
+**InsightFlow** ile verilerinizi içgörülere dönüştürün! 🚀
