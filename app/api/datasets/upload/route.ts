@@ -97,6 +97,10 @@ export async function POST(req: NextRequest) {
 
     // Veritabanına kaydet
     try {
+      // Demo Modu: Veritabanı hatası alsa bile mock veri döner
+      if (!process.env.DATABASE_URL) {
+          throw new Error("No Database");
+      }
       const dataset = await prisma.dataset.create({
         data: {
           name,

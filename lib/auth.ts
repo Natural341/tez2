@@ -19,40 +19,17 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email ve şifre gerekli")
         }
 
-        if (process.env.DATABASE_URL) {
-          try {
-            const user = await prisma.user.findUnique({
-              where: { email: credentials.email }
-            })
-
-            if (user && user.password) {
-              const isPasswordValid = await bcrypt.compare(
-                credentials.password,
-                user.password
-              )
-
-              if (isPasswordValid) {
-                return {
-                  id: user.id,
-                  email: user.email,
-                  name: user.name,
-                  image: user.image,
-                }
-              }
-            }
-          } catch (error) {
-            console.error("Auth DB error (falling back to demo):", error)
+        // Demo Kriteri: Şifre en az 6 karakterse içeri al
+        if (credentials.password.length >= 6) {
+          return {
+            id: "demo-user-" + Buffer.from(credentials.email).toString('hex').slice(0, 8),
+            email: credentials.email,
+            name: credentials.email.split('@')[0].charAt(0).toUpperCase() + credentials.email.split('@')[0].slice(1),
+            image: null,
           }
         }
 
-        // Demo/Fallback Mode: Herhangi bir giriş yapılsın (Vercel'de DB yoksa diye)
-        // Şifre 'test123' ise veya DB yoksa her türlü girişe izin ver
-        return {
-          id: "demo-user",
-          email: credentials.email,
-          name: "Demo Kullanıcı",
-          image: null,
-        }
+        throw new Error("Şifre en az 6 karakter olmalıdır")
       }
     })
   ],
