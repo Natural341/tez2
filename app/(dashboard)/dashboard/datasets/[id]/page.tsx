@@ -10,8 +10,9 @@ import Link from "next/link"
 export default async function DatasetDetailPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
+  const { id } = await params
   const user = await getCurrentUser()
 
   if (!user?.id) {
@@ -22,7 +23,7 @@ export default async function DatasetDetailPage({
   try {
     dataset = await prisma.dataset.findUnique({
       where: {
-        id: params.id,
+        id: id,
         userId: user.id,
       },
       include: {
@@ -35,7 +36,7 @@ export default async function DatasetDetailPage({
   } catch (dbError) {
     console.error("Dataset Detail DB error, returning mock data:", dbError)
     dataset = {
-      id: params.id,
+      id: id,
       name: 'Örnek Veri Seti (Demo)',
       description: 'Bu bir demo veri setidir.',
       rowCount: 1000,

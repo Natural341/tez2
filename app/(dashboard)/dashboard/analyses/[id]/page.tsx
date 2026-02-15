@@ -12,8 +12,9 @@ import { GenerateInsightsButton } from "@/components/dashboard/generate-insights
 export default async function AnalysisDetailPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
+  const { id } = await params
   const user = await getCurrentUser()
 
   if (!user?.id) {
@@ -22,7 +23,7 @@ export default async function AnalysisDetailPage({
 
   const analysis = await prisma.analysis.findUnique({
     where: {
-      id: params.id,
+      id: id,
       userId: user.id,
     },
     include: {
